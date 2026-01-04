@@ -6,7 +6,15 @@ import { v2 as cloudinary } from "cloudinary";
 // POST /api/rooms
 export const createRoom = async (req, res) => {
   try {
-    const { roomType, pricePerNight, amenities } = req.body;
+    const {
+      roomType,
+      name,
+      address,
+      city,
+      description,
+      pricePerNight,
+      amenities,
+    } = req.body;
 
     const hotel = await Hotel.findOne({ owner: req.auth.userId });
 
@@ -24,6 +32,10 @@ export const createRoom = async (req, res) => {
     await Room.create({
       hotel: hotel._id,
       roomType,
+      name,
+      address,
+      city,
+      description,
       pricePerNight: +pricePerNight,
       amenities: JSON.parse(amenities),
       images,
@@ -41,12 +53,13 @@ export const getRooms = async (req, res) => {
   try {
     const rooms = await Room.find({ isAvailable: true })
       .populate({
-        path: 'hotel',
+        path: "hotel",
         populate: {
-          path: 'owner', 
-          select: 'image',
+          path: "owner",
+          select: "image",
         },
-      }).sort({ createdAt: -1 });
+      })
+      .sort({ createdAt: -1 });
     res.json({ success: true, rooms });
   } catch (error) {
     res.json({ success: false, message: error.message });
@@ -58,11 +71,13 @@ export const getRooms = async (req, res) => {
 export const getOwnerRooms = async (req, res) => {
   try {
     const hotelData = await Hotel.findOne({ owner: req.auth.userId });
-    const rooms = await Room.find({ hotel: hotelData._id.toString() }).populate("hotel");
+    const rooms = await Room.find({ hotel: hotelData._id.toString() }).populate(
+      "hotel"
+    );
     res.json({ success: true, rooms });
   } catch (error) {
     console.log(error);
-    
+
     res.json({ success: false, message: error.message });
   }
 };

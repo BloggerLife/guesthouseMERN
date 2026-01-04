@@ -171,7 +171,7 @@ const AllRooms = () => {
               className="max-h-65 md:w-1/2 rounded-xl shadow-lg object-cover cursor-pointer"
             />
             <div className="md:w-1/2 flex flex-col gap-2">
-              <p className="text-gray-500">{room.hotel.city}</p>
+              <p className="text-gray-500">{room.city}</p>
               <p
                 onClick={() => {
                   navigate(`/rooms/${room._id}`);
@@ -180,7 +180,7 @@ const AllRooms = () => {
                 className="text-gray-800 text-3xl font-playfair cursor-pointer"
                 title="View Room Details"
               >
-                {room.hotel.name}
+                {room.name}
               </p>
               <div className="flex items-center">
                 <StarRating />
@@ -188,7 +188,7 @@ const AllRooms = () => {
               </div>
               <div className="flex items-center gap-1 text-gray-500 mt-2 text-sm">
                 <img src={assets.locationIcon} alt="location-icon" />
-                <span>{room.hotel.address}</span>
+                <span>{room.address}</span>
               </div>
               {/* Room Amenities */}
               <div className="flex flex-wrap items-center mt-3 mb-6 gap-4">

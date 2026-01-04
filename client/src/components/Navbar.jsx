@@ -99,7 +99,7 @@ const Navbar = () => {
               isOwner ? navigate("/owner") : setShowHotelReg(true)
             }
           >
-            {isOwner ? "Dashboard" : "List Your BnB"}
+            {isOwner ? "Dashboard" : "List Your Business"}
           </button>
         )}
       </div>
@@ -176,7 +176,7 @@ const Navbar = () => {
                 isOwner ? navigate("/owner") : setShowHotelReg(true)
               }
             >
-              {isOwner ? "Dashboard" : "List Your BnB"}
+              {isOwner ? "Dashboard" : "List Your Business"}
             </button>
           </>
         )}
