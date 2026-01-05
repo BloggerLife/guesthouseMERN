@@ -65,11 +65,12 @@ const Navbar = () => {
       }`}
     >
       <Link to="/">
-        <img
-          src={assets.logo}
-          alt="logo"
-          className={`h-9 ${isScrolled && "invert opacity-80"}`}
-        />
+        <div className="items-center gap-0.5 text-white flex font-semibold text-2xl">
+          <img src={assets.logo} alt="logo" className={`h-9`} />
+          <span className={`h-9 ${isScrolled && "invert opacity-80"}`}>
+            GuestHouseAssist
+          </span>
+        </div>
       </Link>
 
       <div className="hidden md:flex items-center gap-4 lg:gap-8">

@@ -14,6 +14,7 @@ const RoomDetails = () => {
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [guests, setGuests] = useState(1);
+  const [contact, setContact] = useState("");
 
   const [isAvailable, setIsAvailable] = useState(false);
 
@@ -61,6 +62,7 @@ const RoomDetails = () => {
             checkInDate,
             checkOutDate,
             guests,
+            contact,
             paymentMethod: "Pay At Hotel",
           },
           { headers: { Authorization: `Bearer ${await getToken()}` } }
@@ -212,10 +214,24 @@ const RoomDetails = () => {
                 required
               />
             </div>
+            <div className="flex flex-col">
+              <label htmlFor="contact" className="font-medium">
+                Add Contact
+              </label>
+              <input
+                onChange={(e) => setContact(e.target.value)}
+                value={contact}
+                id="contact"
+                type="text"
+                className="max-w-40 rounded border border-gray-300 px-3 py-2 mt-1.5 outline-none"
+                placeholder="Phone Number"
+                required
+              />
+            </div>
           </div>
           <button
             type="submit"
-            className="bg-primary hover:bg-primary-dull active:scale-95 transition-all text-white rounded-md max-md:w-full max-md:mt-6 md:px-25 py-3 md:py-4 text-base cursor-pointer"
+            className="px-6 py-2.5 mt-4 rounded text-white bg-primary hover:bg-primary-dull transition-all cursor-pointer"
           >
             {isAvailable ? "Book Now" : "Check Availability"}
           </button>

@@ -79,11 +79,12 @@ const Dashboard = () => {
           <thead className="bg-gray-50">
             <tr>
               <th className="py-3 px-4 text-gray-800 font-medium">User Name</th>
+              <th className="py-3 px-4 text-gray-800 font-medium">Contact</th>
               <th className="py-3 px-4 text-gray-800 font-medium max-sm:hidden">
                 BnB Name
               </th>
               <th className="py-3 px-4 text-gray-800 font-medium text-center">
-                Total Amount
+                Amount
               </th>
               <th className="py-3 px-4 text-gray-800 font-medium text-center">
                 Payment Status
@@ -96,8 +97,11 @@ const Dashboard = () => {
                 <td className="py-3 px-4 text-gray-700 border-t border-gray-300">
                   {item.user.username}
                 </td>
+                <td className="py-3 px-4 text-gray-700 border-t border-gray-300">
+                  {item.contact}
+                </td>
                 <td className="py-3 px-4 text-gray-400 border-t border-gray-300 max-sm:hidden">
-                  {item.room.roomType}
+                  {item.room.name}
                 </td>
                 <td className="py-3 px-4 text-gray-400 border-t border-gray-300 text-center">
                   {currency} {item.totalPrice}
