@@ -1,4 +1,5 @@
 import logo from "./logo.svg";
+import logo2 from "./logo2.svg";
 import searchIcon from "./searchIcon.svg";
 import userIcon from "./userIcon.svg";
 import calenderIcon from "./calenderIcon.svg";
@@ -45,6 +46,7 @@ import gyserIcon from "./gyserIcon.svg";
 
 export const assets = {
   logo,
+  logo2,
   searchIcon,
   userIcon,
   calenderIcon,
