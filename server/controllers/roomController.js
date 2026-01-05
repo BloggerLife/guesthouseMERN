@@ -18,7 +18,8 @@ export const createRoom = async (req, res) => {
 
     const hotel = await Hotel.findOne({ owner: req.auth.userId });
 
-    if (!hotel) return res.json({ success: false, message: "No Hotel found" });
+    if (!hotel)
+      return res.json({ success: false, message: "No Business found" });
 
     // upload images to cloudinary
     const uploadImages = req.files.map(async (file) => {
@@ -29,7 +30,7 @@ export const createRoom = async (req, res) => {
     // Wait for all uploads to complete
     const images = await Promise.all(uploadImages);
 
-    await Room.create({
+    const createdRoom = await Room.create({
       hotel: hotel._id,
       roomType,
       name,
@@ -41,7 +42,8 @@ export const createRoom = async (req, res) => {
       images,
     });
 
-    res.json({ success: true, message: "Room created successfully" });
+    // After successful creation, redirect to the newly created room resource
+    return res.redirect(`/api/rooms/${createdRoom._id}`);
   } catch (error) {
     res.json({ success: false, message: error.message });
   }
@@ -90,7 +92,7 @@ export const toggleRoomAvailability = async (req, res) => {
     const roomData = await Room.findById(roomId);
     roomData.isAvailable = !roomData.isAvailable;
     await roomData.save();
-    res.json({ success: true, message: "Room availability Updated" });
+    res.json({ success: true, message: "BnB availability Updated" });
   } catch (error) {
     res.json({ success: false, message: error.message });
   }
